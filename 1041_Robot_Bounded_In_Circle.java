@@ -5,9 +5,9 @@ class Solution {
         String orientation = "North";
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < instructions.length(); j++) {
-                String next_instruction = Character.toString(instructions.charAt(j));
-                if (next_instruction.equals("G")) {
-                    position = move(position, next_instruction, orientation);
+                char next_instruction = instructions.charAt(j);
+                if (next_instruction == 'G') {
+                    position = move(position, orientation);
                 } else {
                     orientation = change_orientation(orientation, next_instruction);
                 }
@@ -17,7 +17,7 @@ class Solution {
         return false;
     }
     
-    public static int[] move(int[] position, String instruction, String orientation) {
+    public static int[] move(int[] position, String orientation) {
         if (orientation.equals("North")) {
             position[1] += 1;
         } else if (orientation.equals("South")) {
@@ -30,8 +30,8 @@ class Solution {
         return position;
     }
     
-    public static String change_orientation(String orientation, String instruction) {
-        if (instruction.equals("L")) {
+    public static String change_orientation(String orientation, char instruction) {
+        if (instruction == 'L') {
             if (orientation.equals("North")) {
                 orientation = "West";
             } else if (orientation.equals("South")) {
@@ -41,7 +41,7 @@ class Solution {
             } else if (orientation.equals("East")) {
                 orientation = "North";
             }
-        } else if (instruction.equals("R")) {
+        } else if (instruction == 'R') {
             if (orientation.equals("North")) {
                 orientation = "East";
             } else if (orientation.equals("South")) {
